@@ -363,10 +363,9 @@ function ReportActionItem({
     // Handles manual scrolling to the bottom of the chat when the last message is an actionable whisper and it's resolved.
     // This fixes an issue where InvertedFlatList fails to auto scroll down and results in an empty space at the bottom of the chat in IOS.
     useEffect(() => {
-        if (index !== 0 || !isActionableWhisper) {
+        if (index !== 0 || !isActionableWhisper || !action.originalMessage.resolution) {
             return;
         }
-
         if (prevActionResolution !== (action.originalMessage.resolution ?? null)) {
             reportScrollManager.scrollToIndex(index);
         }
